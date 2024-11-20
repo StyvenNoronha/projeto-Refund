@@ -1,10 +1,25 @@
 //seleciona os elementos do formulário.
 const amount = document.getElementById("amount");
 
+//Captura o evento de input para formatar o valor
 amount.oninput = ()=>{
-
-   //Só aceita numeros 
+    //obter o valor atual do input e remove os caracteres não numéricos
    let value = amount.value.replace(/\D/g,"")
-   amount.value = value
 
+   //Transformar o valor em centavos
+   value = Number(value)/100
+   
+   //atualiza o valor do input
+   amount.value = formatCurrencyBRL(value)
+
+}
+
+function formatCurrencyBRL(value){
+    //formata o valor no padrão BRL (real brasileiro)
+    value = value.toLocaleString("pt-BR"),{
+        style:"currency",
+        currency:"BRL"
+    }
+    //Retorna o valor 
+    return value
 }
