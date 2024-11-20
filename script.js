@@ -4,6 +4,9 @@ const amount = document.getElementById("amount");
 const expense = document.getElementById("expense");
 const category = document.getElementById("category");
 
+
+//seleciona os elementos da lista
+const expenseList = document.querySelector("ul")
 //Captura o evento de input para formatar o valor
 amount.oninput = () => {
   //obter o valor atual do input e remove os caracteres não numéricos
@@ -55,6 +58,18 @@ function expenseAdd(newExpense) {
     expenseItem.classList.add("expense")
 
 
+    //cria o ícone da categoria
+    const expenseIcon = document.createElement("img")
+    //coloca o ícone dinamicamente 
+    expenseIcon.setAttribute("src",`img/${newExpense.category_id}.svg`)
+    expenseIcon.setAttribute("alt",newExpense.category_name)
+
+
+    //adiciona as informações no item
+    expenseItem.append(expenseIcon)
+
+    //adiciona o item na lista
+    expenseList.append(expenseItem)
 
 
   } catch (error) {
