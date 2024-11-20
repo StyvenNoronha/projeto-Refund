@@ -27,8 +27,19 @@ function formatCurrencyBRL(value){
     return value
 }
 
-
+//Captura o evento de submit do formulário para obter os valores
 form.onsubmit=(e)=>{
-    //Não deixa o form atualizar
+    //Previne o comportamento padrão de recarregar a página
     e.preventDefault()
+
+    //Cria um objeto com os detalhes na nova despesa
+    const newExpense = {
+        id: new Date().getTime(),//Gera um identificador único para o objeto
+        expense: expense.value,//Armazena o valor do campo expense
+        category_id: category.value,//Salva o valor do campo category, que geralmente representa o id da categoria
+        category_name: category.options[category.selectedIndex].text,//Obtém o texto visível da opção selecionada no campo category
+        amount: amount.value,// Armazena o valor do campo amount, que provavelmente contém o valor numérico da despesa.
+        created_at: new Date(),//Registra a data e hora atuais como o momento de criação.
+    }
+   
 }
