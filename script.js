@@ -127,8 +127,8 @@ function updateTotals() {
 
       //Remover caracteres não numéricos e substitui a vírgula pelo o ponto
       let value = itemAmount.textContent
-        .replace(/[^\d]/g, "")
-        .replace(",", ".");
+      .replace(/[^\d,]/g, "")
+      .replace(",", ".");
 
       //converte o valor para float
       value = parseFloat(value);
@@ -143,7 +143,21 @@ function updateTotals() {
 
      
     }
-    expenseTotal.textContent = total
+
+    //Cria a span para adicionar o R$ formato
+    const symbolBRL = document.createElement("small")
+    symbolBRL.textContent = "R$"
+
+
+    //formatada o valor e remove o R$ que será exibido pela small com o estilo customizado
+    total = formatCurrencyBRL(total).toUpperCase().replace("R$", "")
+
+    expenseTotal.innerHTML = ""
+
+    //Adiciona o simbolo da moeda e o valor total formatado
+    expenseTotal.append(symbolBRL, total)
+
+
   } catch (error) {
     alert("Não foi passível atualizar o total");
     console.log(error);
